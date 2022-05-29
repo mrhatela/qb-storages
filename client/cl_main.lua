@@ -334,7 +334,7 @@ AddEventHandler('qb-storages:addMemberToStorage', function(data)
         end
     end
 end)
-
+-- EGRP
 AddEventHandler('qb-storages:removeMemberFromStorage', function(data)
     local player=QBCore.Functions.GetPlayerData()
     local citizenid=player.citizenid
@@ -404,7 +404,7 @@ AddEventHandler('qb-storages:addCapacity', function(data)
             end, data)
             return Citizen.Await(p)
         end
-        
+        -- EGRP
         local result = addCapacityPromise(data)
         p = nil
         if result then
