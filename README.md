@@ -1,4 +1,4 @@
-# qb-storags
+# qb-storages
 Storages System for QBCore
 
 ## Dependencies
