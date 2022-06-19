@@ -69,7 +69,7 @@ AddEventHandler('qb-storages:openStorageMenu', function(data)
                 text = "Password", -- text you want to be displayed as a place holder
                 name = "password", -- name of the input should be unique otherwise it might override
                 type = "password", -- type of the input
-                isRequired = true -- Optional [accepted values: true | false] but will not submit the form if no value is inputted
+                isRequired = true
             }
         },
     })
