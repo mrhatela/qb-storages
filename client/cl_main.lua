@@ -1,7 +1,7 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
 
-AddEventHandler('qb-storages:viewStorages', function(location)
+AddEventHandler('qb-storages:GetStorages', function(location)
     local player=QBCore.Functions.GetPlayerData()
     local citizenid=player.citizenid
     local p = nil
@@ -66,9 +66,9 @@ AddEventHandler('qb-storages:openStorageMenu', function(data)
         submitText = "Submit",
         inputs = {
             {
-                text = "Password", -- text you want to be displayed as a place holder
-                name = "password", -- name of the input should be unique otherwise it might override
-                type = "password", -- type of the input
+                text = "Password", 
+                name = "password", 
+                type = "password", 
                 isRequired = true
             }
         },
@@ -102,7 +102,7 @@ AddEventHandler('qb-storages:openStorageMenu', function(data)
                     header = 'Open Storage',
                     txt = 'Open '..v.storagename .." Storage",
                     params = {
-                        event = 'qb-storages:openInventory',
+                        event = 'qb-storages:OpenStorg',
                         args = {
                             storagename = v.storage_location..'_'..v.storagename..'_'..v.citizenid,
                             storagesize = v.storage_size
@@ -137,7 +137,7 @@ AddEventHandler('qb-storages:openStorageMenu', function(data)
                     header = 'Add Storage',
                     txt = 'Add 200lbs to the '..v.storagename..' Storage For 7000$',
                     params = {
-                        event = 'qb-storages:addCapacity',
+                        event = 'qb-storages:AddSpace',
                         args = {
                             storageid = v.id
                         }
@@ -148,7 +148,7 @@ AddEventHandler('qb-storages:openStorageMenu', function(data)
                     header = 'Change Password',
                     txt = 'Change Storage Password',
                     params = {
-                        event = 'qb-storages:changePassword',
+                        event = 'qb-storages:ChangePass',
                         args = {
                             storageid = v.id
                         }
@@ -180,16 +180,16 @@ AddEventHandler('qb-storages:createStorage', function(location)
         submitText = "Submit",
         inputs = {
             {
-                text = "Name", -- text you want to be displayed as a place holder
-                name = "name", -- name of the input should be unique otherwise it might override
-                type = "text", -- type of the input
-                isRequired = true -- Optional [accepted values: true | false] but will not submit the form if no value is inputted
+                text = "Name", -
+                name = "name", 
+                type = "text", 
+                isRequired = true 
             },
             {
-                text = "Password", -- text you want to be displayed as a place holder
-                name = "password", -- name of the input should be unique otherwise it might override
-                type = "password", -- type of the input
-                isRequired = true -- Optional [accepted values: true | false] but will not submit the form if no value is inputted
+                text = "Password", -
+                name = "password", 
+                type = "password", 
+                isRequired = true 
             }
         },
     })
@@ -220,16 +220,15 @@ AddEventHandler('qb-storages:createStorage', function(location)
         else
             QBCore.Functions.Notify("Dublicate Name For storage", "error")
         end
-        -- return cb(result)
     else
-        QBCore.Functions.Notify("You can not Afort that", "error")
+        QBCore.Functions.Notify("You're Missing Cash", "error")
     end
     end
 
 
 end)
 
-AddEventHandler('qb-storages:createStorageFor', function(location)
+AddEventHandler('qb-storages:UnitCreate', function(location)
     local player=QBCore.Functions.GetPlayerData()
     -- local citizenid=player.citizenid
     local cpdialog = exports['qb-input']:ShowInput({
@@ -237,22 +236,22 @@ AddEventHandler('qb-storages:createStorageFor', function(location)
         submitText = "Submit",
         inputs = {
             {
-                text = "Name", -- text you want to be displayed as a place holder
-                name = "name", -- name of the input should be unique otherwise it might override
-                type = "text", -- type of the input
-                isRequired = true -- Optional [accepted values: true | false] but will not submit the form if no value is inputted
+                text = "Name", 
+                name = "name", 
+                type = "text",
+                isRequired = true -
             },
             {
-                text = "CitizenID", -- text you want to be displayed as a place holder
-                name = "citizenid", -- name of the input should be unique otherwise it might override
-                type = "text", -- type of the input
-                isRequired = true -- Optional [accepted values: true | false] but will not submit the form if no value is inputted
+                text = "CitizenID", -
+                name = "citizenid", 
+                type = "text", 
+                isRequired = true 
             },
             {
-                text = "Password", -- text you want to be displayed as a place holder
-                name = "password", -- name of the input should be unique otherwise it might override
-                type = "password", -- type of the input
-                isRequired = true -- Optional [accepted values: true | false] but will not submit the form if no value is inputted
+                text = "Password", -
+                name = "password", 
+                type = "password", 
+                isRequired = true 
             }
         },
     })
@@ -285,7 +284,7 @@ AddEventHandler('qb-storages:createStorageFor', function(location)
         end
         -- return cb(result)
     else
-        QBCore.Functions.Notify("You can not Afort that", "error")
+        QBCore.Functions.Notify("You're Missing Cash.", "error")
     end
     end
 
@@ -296,16 +295,15 @@ end)
 AddEventHandler('qb-storages:addMemberToStorage', function(data)
     local player=QBCore.Functions.GetPlayerData()
     local citizenid=player.citizenid
-    -- local storagename=location.."_"..citizenid
     local mdialog = exports['qb-input']:ShowInput({
         header = "Add Member",
         submitText = "Submit",
         inputs = {
             {
-                text = "Member CitizenID", -- text you want to be displayed as a place holder
-                name = "citizenid", -- name of the input should be unique otherwise it might override
-                type = "text", -- type of the input
-                isRequired = true -- Optional [accepted values: true | false] but will not submit the form if no value is inputted
+                text = "Member CitizenID", -
+                name = "citizenid", 
+                type = "text", 
+                isRequired = true 
             }
         },
     })
@@ -338,16 +336,15 @@ end)
 AddEventHandler('qb-storages:removeMemberFromStorage', function(data)
     local player=QBCore.Functions.GetPlayerData()
     local citizenid=player.citizenid
-    -- local storagename=location.."_"..citizenid
     local mdialog = exports['qb-input']:ShowInput({
         header = "Remove Member",
         submitText = "Submit",
         inputs = {
             {
-                text = "Member CitizenID", -- text you want to be displayed as a place holder
-                name = "citizenid", -- name of the input should be unique otherwise it might override
-                type = "text", -- type of the input
-                isRequired = true -- Optional [accepted values: true | false] but will not submit the form if no value is inputted
+                text = "Member CitizenID", -
+                name = "citizenid", 
+                type = "text", 
+                isRequired = true 
             }
         },
     })
@@ -377,8 +374,8 @@ AddEventHandler('qb-storages:removeMemberFromStorage', function(data)
     end
 end)
 
-AddEventHandler('qb-storages:openInventory', function(data)
-        TriggerServerEvent("inventory:server:OpenInventory", "stash", data.storagename,{
+AddEventHandler('qb-storages:OpenStorg', function(data)
+        TriggerServerEvent("inventory:server:OpenStorg", "stash", data.storagename,{
             maxweight = data.storagesize,
             slots = Config.StorageSlots,
         })
@@ -389,23 +386,23 @@ AddEventHandler('qb-storages:openInventory', function(data)
 end)
 
 
-AddEventHandler('qb-storages:addCapacity', function(data)
+AddEventHandler('qb-storages:AddSpace', function(data)
     local player=QBCore.Functions.GetPlayerData()
     if player.money['cash'] >= tonumber(Config.StorageAddPrice) then
         local p = nil
         local data ={
             id = data.storageid
         }
-        local addCapacityPromise = function(data)
+        local AddSpacePromise = function(data)
             if p then return end
             p = promise.new()
-            QBCore.Functions.TriggerCallback('qb-storages:server:addCapacity', function(result)
+            QBCore.Functions.TriggerCallback('qb-storages:server:AddSpace', function(result)
                 p:resolve(result)
             end, data)
             return Citizen.Await(p)
         end
         -- EGRP
-        local result = addCapacityPromise(data)
+        local result = AddSpacePromise(data)
         p = nil
         if result then
             TriggerServerEvent('qb-storages:server:removeMoney',Config.StorageAddPrice)
@@ -414,11 +411,11 @@ AddEventHandler('qb-storages:addCapacity', function(data)
             QBCore.Functions.Notify("Something Went Wrong", "error")
         end
     else
-        QBCore.Functions.Notify("You Can not Afort that", "error")
+        QBCore.Functions.Notify("You're Missing Cash.", "error")
     end
 end)
 
-AddEventHandler('qb-storages:changePassword', function(data)
+AddEventHandler('qb-storages:ChangePass', function(data)
     local player=QBCore.Functions.GetPlayerData()
     local citizenid=player.citizenid
     -- local storagename=location.."_"..citizenid
@@ -427,10 +424,10 @@ AddEventHandler('qb-storages:changePassword', function(data)
         submitText = "Submit",
         inputs = {
             {
-                text = "New Password", -- text you want to be displayed as a place holder
-                name = "password", -- name of the input should be unique otherwise it might override
-                type = "password", -- type of the input
-                isRequired = true -- Optional [accepted values: true | false] but will not submit the form if no value is inputted
+                text = "New Password", -
+                name = "password", 
+                type = "password", 
+                isRequired = true 
             }
         },
     })
@@ -444,7 +441,7 @@ AddEventHandler('qb-storages:changePassword', function(data)
         local addMemberPromise = function(data)
             if p then return end
             p = promise.new()
-            QBCore.Functions.TriggerCallback('qb-storages:server:changePassword', function(result)
+            QBCore.Functions.TriggerCallback('qb-storages:server:ChangePass', function(result)
                 p:resolve(result)
             end, data)
             return Citizen.Await(p)
@@ -460,7 +457,7 @@ AddEventHandler('qb-storages:changePassword', function(data)
     end
 end)
 
-AddEventHandler('qb-storages:getcitizenId', function(location)
+AddEventHandler('qb-storages:GetCID', function(location)
     local player=QBCore.Functions.GetPlayerData()
     
     local mdialog = exports['qb-input']:ShowInput({
@@ -468,10 +465,10 @@ AddEventHandler('qb-storages:getcitizenId', function(location)
         submitText = "Submit",
         inputs = {
             {
-                text = "CitizenID", -- text you want to be displayed as a place holder
-                name = "citizenid", -- name of the input should be unique otherwise it might override
-                type = "text", -- type of the input
-                isRequired = true -- Optional [accepted values: true | false] but will not submit the form if no value is inputted
+                text = "CitizenID", -
+                name = "citizenid", 
+                type = "text", 
+                isRequired = true 
             }
         },
     })
@@ -506,7 +503,7 @@ AddEventHandler('qb-storages:getcitizenId', function(location)
                         header = v.storagename,
                         txt = "Owner : "..v.citizenid,
                         params = {
-                            event = "qb-storages:changePassword",
+                            event = "qb-storages:ChangePass",
                             args = {
                                 storageid = v.id
                             }
@@ -542,7 +539,7 @@ for k, v in pairs(Config.location) do
             {
               type = "client",
               action = function(entity) 
-                TriggerEvent('qb-storages:viewStorages', k)
+                TriggerEvent('qb-storages:GetStorages', k)
               end,
               icon = "fas fa-box-open",
               label = "View Storage",
@@ -550,7 +547,7 @@ for k, v in pairs(Config.location) do
             {
                 type = "client",
                 action = function(entity) 
-                  TriggerEvent('qb-storages:createStorageFor', k)
+                  TriggerEvent('qb-storages:UnitCreate', k)
                 end,
                 icon = "fas fa-boxes",
                 label = "Create A Storage (Real Estate)",
@@ -559,7 +556,7 @@ for k, v in pairs(Config.location) do
             {
                 type = "client",
                 action = function(entity) 
-                TriggerEvent('qb-storages:getcitizenId', k)
+                TriggerEvent('qb-storages:GetCID', k)
                 end,
                 icon = "fas fa-key",
                 label = "Change Storage Password (Police)",
